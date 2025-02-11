@@ -1,17 +1,21 @@
 <?php
-  session_start(); //inisialisasi Session
-  /*
-  jika user sudah login sesuai dengan username atau role
-  maka akan diarahkan ke URL: dashboard.php
-  */
-  if (isset($_SESSION["username"]) || isset($_SESSION["role"])) {
-    header('location: ../dashboard.php');
-  }
-  // Ambil notifikasi jika ada, kemudian hapus dari sesi
-  $notification = $_SESSION['notification'] ?? null;
-  if ($notification) {
-    unset($_SESSION['notification']);
-  }
+session_start(); //inisialisasi Session
+// ambil notifikasi jika ada, kemudian hapus dari sesi
+$notification = $_SESSION['notification'] ?? null;
+if ($notification){
+  unset($_SESSION['notificstion']);
+}
+/*
+jika user sudah login sesuai dengan username atau role
+ maka akan diarahkan ke URL: dashboard.php
+ */
+if (isset($_SESSION["username"]) || isset($_SESSION["role"])) {
+  $_SESSION['notification'] = [
+      'type' => 'danger',
+      'message' => 'Silakan Logout Terlebih Dahulu!'
+  ];
+  header('location: ../dashboard.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
