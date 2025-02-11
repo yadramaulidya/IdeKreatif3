@@ -1,4 +1,9 @@
-<?php include "init_session.php"; ?>
+<?php
+// Memasukkan file konfigurasi database
+include 'config.php';
+// Memasukkan file init session
+include "init_session.php";
+?>
 
 <!DOCTYPE html>
 <html lang="en">
